@@ -140,25 +140,26 @@ async def test_socketio():
     try:
         print("Testing Socket.IO connection...")
         # Create a socket client
-        sio = socketio.AsyncClient(logger=False)
+        sio = socketio.Client()
         
         # Track connection status
         connected = False
         
         @sio.event
-        async def connect():
+        def connect():
             nonlocal connected
             connected = True
             print("Socket.IO connected successfully")
         
         @sio.event
-        async def connect_error(data):
+        def connect_error(data):
             print(f"Socket.IO connection error: {data}")
         
         # Try to connect
         try:
-            await sio.connect(SOCKET_URL, transports=['websocket'], wait_timeout=10)
-            await asyncio.sleep(2)
+            # Use the non-async client for simplicity
+            sio.connect(SOCKET_URL, wait_timeout=10)
+            time.sleep(2)
             
             if connected:
                 test_results.add_result("Socket.IO Connection", True, "Client connected successfully")
@@ -186,10 +187,10 @@ async def test_socketio():
             test_results.add_result("Socket.IO Message History API", True, f"Room messages API working, found {len(messages)} messages")
             
             # Disconnect
-            await sio.disconnect()
+            sio.disconnect()
             test_results.add_result("Socket.IO Disconnect", True, "Client disconnected successfully")
             
-        except socketio.exceptions.ConnectionError as e:
+        except Exception as e:
             test_results.add_result("Socket.IO Connection", False, f"Connection error: {str(e)}")
         
     except Exception as e:
