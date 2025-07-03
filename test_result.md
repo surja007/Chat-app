@@ -182,15 +182,18 @@ backend:
   
   - task: "API Endpoints"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Created REST API endpoints for rooms management, message history retrieval, online users"
+      - working: true
+        agent: "testing"
+        comment: "All API endpoints are working correctly. GET /api/rooms, POST /api/rooms, GET /api/rooms/{room_id}/messages, and GET /api/rooms/{room_id}/users all return the expected responses."
 
 frontend:
   - task: "Socket.IO Client Setup"
