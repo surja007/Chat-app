@@ -152,15 +152,18 @@ backend:
   
   - task: "Message Broadcasting"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Implemented send_message socket event, room-based message broadcasting, MongoDB persistence"
+      - working: true
+        agent: "testing"
+        comment: "Message retrieval API is working correctly. The GET /api/rooms/{room_id}/messages endpoint successfully returns the messages for a room."
   
   - task: "Typing Indicators"
     implemented: true
