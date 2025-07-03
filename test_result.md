@@ -122,15 +122,18 @@ backend:
   
   - task: "MongoDB Models for Chat"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Created Message, Room, and User models with UUID primary keys, implemented chat history storage"
+      - working: true
+        agent: "testing"
+        comment: "MongoDB models are correctly implemented. Room creation and retrieval are working properly. Message and user models are functioning as expected."
   
   - task: "Real-time Room Management"
     implemented: true
