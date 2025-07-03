@@ -217,7 +217,7 @@ def test_database_operations():
 
 # ===== MAIN TEST RUNNER =====
 
-async def run_tests():
+def run_tests():
     """Run all tests"""
     print("Starting backend tests...")
     
@@ -233,10 +233,10 @@ async def run_tests():
     
     # Test Socket.IO functionality
     print("\n===== Testing Socket.IO Functionality =====")
-    await test_socketio()
+    test_socketio()
     
     # Print test summary
     test_results.print_summary()
 
 if __name__ == "__main__":
-    asyncio.run(run_tests())
+    run_tests()
