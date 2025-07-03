@@ -137,15 +137,18 @@ backend:
   
   - task: "Real-time Room Management"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Implemented join_room, leave_room socket events, user presence tracking, online users list management"
+      - working: true
+        agent: "testing"
+        comment: "Room management API endpoints are working correctly. The GET /api/rooms/{room_id}/users endpoint successfully returns the list of users in a room."
   
   - task: "Message Broadcasting"
     implemented: true
